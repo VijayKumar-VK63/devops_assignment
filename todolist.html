@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>TO_DO_LIST</title>
+<style>
+
+</style>
+</head>
+<body>
+<p>TODO List</p>
+<input type="text" placeholder="Add Task"class="input-name">
+<input type="date"class="duedate-input">
+<button onclick="addtodo();">Add</button>
+<div class="todo-list"></div>
+<script>
+const todolist=[{
+    name:'make dinner',
+    duedate:'2022-12-22'
+},{
+    name:'wash clothes',
+    duedate:'2022-2-22'
+}];
+rendertodolist();
+function rendertodolist(){
+let todolisthtml="";
+for(let i=0;i<todolist.length;i++){
+    const todoObj=todolist[i];
+   // const name=todoobj.name;
+    const {name,duedate}=todoObj;//shortcut
+    //const duedate=todoobj.duedate;
+    const html=`<p>${name} ${duedate} <button onclick="
+    todolist.splice(${i},1);
+    rendertodolist();
+    ">Delete</button></p>`;
+    todolisthtml+=html;
+}
+  document.querySelector(".todo-list").innerHTML=todolisthtml;
+}
+function addtodo(){
+   const inputElement=document.querySelector(".input-name");
+   const name=inputElement.value;
+   const duedateinput=document.querySelector('.duedate-input');
+   const duedate=duedateinput.value;
+   todolist.push({name:name,
+   duedate:duedate
+  });
+   inputElement.value="";
+   rendertodolist();
+ 
+}
+</script>
+</body>
+</html>
